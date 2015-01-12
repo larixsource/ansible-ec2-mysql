@@ -1,0 +1,39 @@
+---
+- name: stop mysql
+  service: name=mysql state=stopped
+
+- name: install xfsprogs
+  apt: name=xfsprogs state=present update_cache=yes
+
+- name: load xfs module
+  modprobe: name=xfs state=present
+
+- name: create file system
+  filesystem: fstype=xfs dev=/dev/{{mysql_ebsdev}}
+
+- name: mount file system
+  mount: name=/ebs src=/dev/{{mysql_ebsdev}} fstype=xfs state=mounted
+
+- name: create directories
+  file: path=/ebs/{{item}} state=directory
+  with_items:
+    - etc
+    - var/lib
+    - var/log
+
+- name: move mysql files
+  shell: mv /{{item}}/mysql /ebs/{{item}} creates=/ebs/{{item}}/mysql
+  with_items:
+    - etc
+    - var/lib
+    - var/log
+
+- name: mount /ebs/*/mysql in original path
+  mount: name=/{{item}}/mysql src=/ebs/{{item}}/mysql fstype=none opts=bind state=mounted
+  with_items:
+    - etc
+    - var/lib
+    - var/log
+
+- name: start mysql
+  service: name=mysql state=started

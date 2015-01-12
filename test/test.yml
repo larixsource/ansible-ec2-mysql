@@ -1,0 +1,5 @@
+---
+- hosts: all
+  sudo: yes
+  roles:
+    - { role: ansible-ec2-mysql, mysql_root_passwd: 'asdf', mysql_ebsdev: sdb }

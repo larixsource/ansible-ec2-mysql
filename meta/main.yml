@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: Jorge Riquelme
+  description: Role to install mysql on ec2 using an ebs volume
+  company: Larix Ltda
+  license: Apache-2.0
+  min_ansible_version: 1.2
+  platforms:
+  - name: Ubuntu
+    versions: #check other versions of Ubuntu
+    - trusty
+  categories:
+  - cloud:ec2
+  - database:sql
+dependencies: []

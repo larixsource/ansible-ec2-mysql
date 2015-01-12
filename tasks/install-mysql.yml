@@ -1,0 +1,17 @@
+---
+- name: install dependencies
+  apt: name={{item}} state=present
+  with_items: ['python-mysqldb', 'expect']
+
+- name: set root password
+  debconf: name='mysql-server' question='{{item}}' vtype='password' value={{mysql_root_passwd}}
+  with_items: ['mysql-server/root_password', 'mysql-server/root_password_again']
+
+- name: install mysql
+  apt: name=mysql-server-{{mysql_version}} state=present
+
+- name: generate mysql_secure_installation.sh
+  template: src=mysql_secure.sh.j2 dest=/tmp/mysql_secure.sh mode=0755
+
+- name: run mysql_secure_installation
+  shell: /tmp/mysql_secure.sh

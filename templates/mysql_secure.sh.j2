@@ -1,0 +1,25 @@
+#!/bin/sh
+
+expect <<END
+spawn mysql_secure_installation
+
+expect "Enter current password for root (enter for none)"
+send "{{mysql_root_passwd}}\r"
+
+expect "Change the root password?"
+send "n\r"
+
+expect "Remove anonymous users?"
+send "{{mysql_rm_anon_user}}\r"
+
+expect "Disallow root login remotely?"
+send "{{mysql_disallow_root_remote_login}}\r"
+
+expect "Remove test database and access to it?"
+send "{{mysql_rm_test_db}}\r"
+
+expect "Reload privilege tables now?"
+send "y\r"
+
+expect eof
+END
