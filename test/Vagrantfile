@@ -11,6 +11,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Virtualbox config
   ebs = 'ebs.vdi'
   config.vm.provider "virtualbox" do |vb|
+    # workaround to bug in mysql 5.6, see https://bugs.launchpad.net/ubuntu/+source/mysql-5.6/+bug/1312936
+    vb.memory = 1024
+
     unless File.exist?(ebs)
       vb.customize ['createhd', '--filename', ebs, '--size', 1 * 1024]
     end
