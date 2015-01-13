@@ -28,7 +28,7 @@ None.
 Example Playbook
 ----------------
 
-The two relevant variables are `mysql_ebsdev` and `mysql_root_password`, the former is the block device associated to the EBS volumen (in Trusty will be xvdf, xvdg, xvdh, and so on) and the later is the password of the root user (in mysql, obviously).
+The two relevant variables are `mysql_ebsdev` and `mysql_root_password`, the former is the block device associated to the EBS volume (in Trusty will be xvdf, xvdg, xvdh, and so on) and the later is the password of the root user (in mysql, obviously).
 
 ```yml
 - hosts: servers
