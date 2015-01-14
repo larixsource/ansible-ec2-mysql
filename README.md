@@ -1,4 +1,4 @@
-ec2-mysql
+ansible-ec2-mysql
 =========
 
 > [Ansible](http://www.ansible.com) role to install [MySQL](http://www.mysql.com) in Ubuntu Trusty, in EC2 using an EBS volume.
@@ -14,7 +14,8 @@ Role Variables
 --------------
 
 - `mysql_version`: mysql server version, by default 5.5 (5.6 also available)
-- `mysql_ebsdev`: ebs volume block device, by defaul xvdf
+- `mysql_use_ebs`: if an EBS volume should be used, by default false
+- `mysql_ebsdev`: EBS volume block device, by defaul xvdf
 - `mysql_root_passwd`: mysql root password, by default 'supersecret', yo should overwrite this
 - `mysql_rm_anon_user`: if the anonymous user should be removed (y or n), by default y
 - `mysql_disallow_root_remote_login`: if the remote root login should be disallowed (y or n), by default y
