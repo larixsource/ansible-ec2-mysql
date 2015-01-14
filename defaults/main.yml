@@ -1,5 +1,6 @@
 ---
 mysql_version: 5.5 #or 5.6
+mysql_use_ebs: false
 mysql_ebsdev: xvdf #ebs block device
 mysql_root_passwd: supersecret #overwrite!
 mysql_rm_anon_user: y #y/n

@@ -1,3 +1,4 @@
 ---
 - include: install-mysql.yml
 - include: conf-ebs.yml
+  when: mysql_use_ebs
